@@ -24,7 +24,7 @@ noDupes xs =
 main : Html.Html a
 main =
     Html.text
-        <| case test of
+        <| case suite of
             0 ->
                 "Your implementation passed all tests."
 
@@ -35,8 +35,8 @@ main =
                 "Your implementation failed " ++ (toString x) ++ " tests."
 
 
-test : Int
-test =
+suite : Int
+suite =
     List.length
         <| List.filter ((==) False)
             [ noDupes [ 1, 1, 1, 1, 2, 5, 5, 2, 1 ] == [ 1, 2, 5, 2, 1 ]

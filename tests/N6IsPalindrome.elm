@@ -15,7 +15,7 @@ isPalindrome xs =
 main : Html.Html a
 main =
     Html.text
-        <| case test of
+        <| case suite of
             0 ->
                 "Your implementation passed all tests."
 
@@ -26,8 +26,8 @@ main =
                 "Your implementation failed " ++ (toString x) ++ " tests."
 
 
-test : Int
-test =
+suite : Int
+suite =
     List.length
         <| List.filter ((==) False)
             [ isPalindrome [ 1, 3, 5, 8, 5, 3, 1 ] == True

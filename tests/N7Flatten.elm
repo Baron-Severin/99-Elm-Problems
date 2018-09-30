@@ -20,7 +20,7 @@ flatten list =
 main : Html.Html a
 main =
     Html.text
-        <| case test of
+        <| case suite of
             0 ->
                 "Your implementation passed all tests."
 
@@ -50,8 +50,8 @@ nl1 =
         ]
 
 
-test : Int
-test =
+suite : Int
+suite =
     List.length
         <| List.filter ((==) False)
             [ flatten nl1 == List.range 1 9

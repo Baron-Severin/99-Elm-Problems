@@ -25,7 +25,7 @@ dropWhile predicate list =
 main : Html.Html a
 main =
     Html.text
-        <| case test of
+        <| case suite of
             0 ->
                 "Your implementation passed all tests."
 
@@ -36,8 +36,8 @@ main =
                 "Your implementation failed " ++ (toString x) ++ " tests."
 
 
-test : Int
-test =
+suite : Int
+suite =
     List.length
         <| List.filter ((==) False)
             [ ( dropWhile isOdd [1, 2, 1] == [2, 1] )
