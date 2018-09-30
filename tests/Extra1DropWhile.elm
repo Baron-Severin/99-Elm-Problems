@@ -1,4 +1,4 @@
-module DropWhile exposing (..)
+module Extra1DropWhile exposing (..)
 
 import Debug exposing (toString, log)
 import Html

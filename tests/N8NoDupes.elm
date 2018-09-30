@@ -1,4 +1,4 @@
-module NoDupes exposing (..)
+module N8NoDupes exposing (..)
 
 import Debug exposing (toString)
 import Html

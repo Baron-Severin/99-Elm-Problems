@@ -1,4 +1,4 @@
-module IsPalindrome exposing (..)
+module N6IsPalindrome exposing (..)
 
 import Debug exposing (toString)
 import Html

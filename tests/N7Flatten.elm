@@ -1,4 +1,4 @@
-module Flatten exposing (..)
+module N7Flatten exposing (..)
 
 import Debug exposing (toString)
 import Html

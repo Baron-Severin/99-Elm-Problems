@@ -1,4 +1,4 @@
-module TakeWhile exposing (..)
+module Extra2TakeWhile exposing (..)
 
 import Debug exposing (toString)
 import Html exposing (text)
