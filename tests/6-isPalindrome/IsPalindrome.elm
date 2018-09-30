@@ -1,3 +1,6 @@
+module IsPalindrome exposing (..)
+
+import Debug exposing (toString)
 import Html
 import List
 import Maybe
@@ -5,8 +8,8 @@ import Maybe
 
 isPalindrome : List a -> Bool
 isPalindrome xs =
-    -- your implementation here
-    False
+    if List.reverse xs == xs then True
+    else False
 
 
 main : Html.Html a
