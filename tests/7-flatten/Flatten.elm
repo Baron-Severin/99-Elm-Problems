@@ -15,7 +15,7 @@ flatten list =
     case list of
         Elem value -> List.singleton value
         SubList sublist -> List.concatMap flatten sublist
-        
+
 
 main : Html.Html a
 main =
