@@ -3,15 +3,27 @@ module N9Pack exposing (..)
 import Debug exposing (toString)
 import Expect
 import Html
-import List
+import List exposing (foldr, head, tail)
 import Maybe
 import Test exposing (Test, describe, test)
 
+tailOrEmpty : List a -> List a
+tailOrEmpty list =
+    Maybe.withDefault [] ( tail list )
+
+collect : a -> List (List a) -> List (List a)
+collect next superList =
+        case head superList of
+            Nothing -> [[next]]
+            Just subList -> case head subList of
+                Nothing -> [[next]]
+                Just unwrapped -> if unwrapped == next then ( unwrapped :: subList ) :: tailOrEmpty superList
+                                  else [next] :: superList
 
 pack : List a -> List (List a)
 pack xs =
     -- your implementation goes here
-    [ [] ]
+    foldr collect [] xs
 
 
 
