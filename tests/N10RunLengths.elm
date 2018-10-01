@@ -1,4 +1,4 @@
-module N10RunLengths exposing (..)
+module N10RunLengths exposing (suite)
 
 import Expect
 import Html
@@ -6,11 +6,18 @@ import List
 import Maybe
 import Test exposing (Test, describe, test)
 
+toTuple : List a -> Maybe (Int, a)
+toTuple list =
+    case List.head list of
+        Nothing -> Nothing
+        Just value -> Just ( List.length list, value )
+        
 
 runLengths : List (List a) -> List ( Int, a )
 runLengths xss =
-    -- your implementation here
-    []
+    xss
+      |> List.map toTuple
+      |> List.filterMap identity
 
 
 suite : Test
