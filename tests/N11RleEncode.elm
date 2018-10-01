@@ -2,7 +2,8 @@ module N11RleEncode exposing (suite)
 
 import Expect
 import Html
-import List
+import List exposing (foldr)
+import ListExt exposing (tailOrEmpty)
 import Maybe
 import Test exposing (Test, describe, test)
 
@@ -11,11 +12,30 @@ type RleCode a
     = Run Int a
     | Single a
 
+-- TODO find a better way to do this kind of thing. This is gross
+group : a -> List ( List a ) -> List ( List a )
+group a list =
+    case List.head list of
+        Nothing -> [ a ] :: list
+        Just sublist -> case List.head sublist of
+            Nothing -> [ a ] :: list
+            Just unwrapped -> if unwrapped == a then ( a :: sublist ) :: ( tailOrEmpty list )
+                              else [ a ] :: list
+
+
+toCode : List a -> Maybe ( RleCode a )
+toCode list =
+    case List.head list of
+        Nothing -> Nothing
+        Just value -> if List.length list == 1 then Just <| Single value
+                      else Just <| Run ( List.length list ) value
 
 rleEncode : List a -> List (RleCode a)
 rleEncode list =
-    -- your implementation here
-    []
+    list
+      |> foldr group []
+      |> List.map toCode
+      |> List.filterMap identity
 
             
 suite: Test
