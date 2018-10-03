@@ -12,15 +12,21 @@ type RleCode a
     = Run Int a
     | Single a
 
--- TODO find a better way to do this kind of thing. This is gross
+
 group : a -> List ( List a ) -> List ( List a )
 group a list =
-    case List.head list of
-        Nothing -> [ a ] :: list
-        Just sublist -> case List.head sublist of
-            Nothing -> [ a ] :: list
-            Just unwrapped -> if unwrapped == a then ( a :: sublist ) :: ( tailOrEmpty list )
-                              else [ a ] :: list
+    case list of
+        [] ->
+            [ a ] :: list
+
+        sublist :: _ ->
+            case sublist of
+                [] ->
+                    [ a ] :: list
+
+                unwrapped :: _ ->
+                    if unwrapped == a then ( a :: sublist ) :: ( tailOrEmpty list )
+                    else [ a ] :: list
 
 
 toCode : List a -> Maybe ( RleCode a )
