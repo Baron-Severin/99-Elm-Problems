@@ -10,11 +10,25 @@ type RleCode a
     = Run Int a
     | Single a
 
+toList : RleCode a -> List a
+toList rlecode =
+    case rlecode of
+        Single a ->
+            [ a ]
+        Run times a ->
+            List.repeat times a
+
+
+flatten : List ( List a ) -> List a
+flatten list =
+    List.foldr (++) [] list
+
 
 rleDecode : List (RleCode a) -> List a
 rleDecode list =
-    -- your implementation goes here
-    []
+    list
+      |> List.map toList
+      |> flatten
 
             
 suite : Test
